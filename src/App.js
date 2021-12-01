@@ -8,10 +8,10 @@ import { v4 as uuidv4 } from "uuid";
 class App extends Component {
   state = {
     contacts: [
-      // { id: uuidv4(), name: "Rosie Simpson", phoneNumber: "459-12-56" },
-      // { id: uuidv4(), name: "Hermione Kline", phoneNumber: "443-89-12" },
-      // { id: uuidv4(), name: "Eden Clements", phoneNumber: "645-17-79" },
-      // { id: uuidv4(), name: "Annie Copeland", phoneNumber: "227-91-26" },
+      { id: uuidv4(), name: "Rosie Simpson", phoneNumber: "459-12-56" },
+      { id: uuidv4(), name: "Hermione Kline", phoneNumber: "443-89-12" },
+      { id: uuidv4(), name: "Eden Clements", phoneNumber: "645-17-79" },
+      { id: uuidv4(), name: "Annie Copeland", phoneNumber: "227-91-26" },
     ],
     filter: "",
   };
@@ -22,18 +22,18 @@ class App extends Component {
     const parsedContacts = JSON.parse(contacts);
     console.log("DidMount parsedContacts", parsedContacts);
 
-    if (parsedContacts) {
-      this.setState({ contacts: parsedContacts });
+    if (parsedContacts && parsedContacts.length > 0) {
+      this.setState({ contacts: [...parsedContacts] });
     }
   }
 
   componentDidUpdate(prevProps, prevState) {
     const nextContacts = this.state.contacts;
-    const prevContacts = prevState.contacts;
+    // const prevContacts = prevState.contacts;
 
-    if (nextContacts !== prevContacts) {
-      localStorage.setItem("сontacts", JSON.stringify(nextContacts));
-    }
+    // if (nextContacts !== prevContacts) {
+    localStorage.setItem("сontacts", JSON.stringify(nextContacts));
+    // }
   }
 
   addContact = () => {
@@ -81,7 +81,6 @@ class App extends Component {
     const stateNormElems = this.state.contacts.filter((elem) => {
       return elem.name.toLowerCase().includes(normalizedElem);
     });
-
     return stateNormElems;
   };
 

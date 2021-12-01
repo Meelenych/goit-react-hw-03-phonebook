@@ -32,7 +32,7 @@ class App extends Component {
     // const prevContacts = prevState.contacts;
 
     // if (nextContacts !== prevContacts) {
-    localStorage.setItem("сontacts", JSON.stringify(nextContacts));
+    localStorage.setItem("contacts", JSON.stringify(nextContacts));
     // }
   }
 
